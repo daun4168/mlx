@@ -25,6 +25,4 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body-file: 'comment-body.md'
-#          body: ${{ env.MESSAGE }} A
-#          body:
           reactions: 'heart'

@@ -19,8 +19,9 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--team-size', type=int, default=4)
     args = parser.parse_args()
 
-    print(args.members)
-    print(args.team_size)
+    comment_body = open('comment-body.md', 'w')
+
+    comment_body.write("Members\n")
     members = [
        "김수영", "김원호", "김유리",
        "류나현", "신규용", "이다운",
@@ -29,8 +30,6 @@ if __name__ == '__main__':
     ]
     team_size = 4
     for group_idx, group in enumerate(split_group(members, team_size)):
-        print(group_idx, ':', group)
+        comment_body.write(f'{group_idx:02} | {group}\n')
 
-    with open('comment-body.md', 'w') as f:
-        f.write('This is the comment')
-
+    comment_body.close()
