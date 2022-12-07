@@ -1,7 +1,6 @@
 import random
 from typing import List
 from argparse import ArgumentParser
-import os
 
 
 def split_group(samples: List, size: int):
@@ -20,6 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--team-size', type=int, default=4)
     args = parser.parse_args()
 
+    print("MESSAGE=")
     print(args.members)
     print(args.team_size)
     members = [
@@ -32,4 +32,3 @@ if __name__ == '__main__':
     for group_idx, group in enumerate(split_group(members, team_size)):
         print(group_idx, ':', group)
 
-    os.environ['MESSAGE'] = 'The First Message'

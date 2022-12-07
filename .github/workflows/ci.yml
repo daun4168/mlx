@@ -19,7 +19,7 @@ jobs:
           python-version: '3.9'
       - name: Test
         run: |
-          python3 run.py
+          python3 run.py >> $GITHUB_ENV
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
