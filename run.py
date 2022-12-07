@@ -19,7 +19,6 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--team-size', type=int, default=4)
     args = parser.parse_args()
 
-    print("MESSAGE=")
     print(args.members)
     print(args.team_size)
     members = [
