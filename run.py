@@ -4,6 +4,7 @@ import math
 from argparse import ArgumentParser
 from typing import List
 import sys
+import pandas as pd
 
 def split_group(samples: List, size: int) -> List[List]:
     random.shuffle(samples)
@@ -11,7 +12,7 @@ def split_group(samples: List, size: int) -> List[List]:
 
 
 if __name__ == '__main__':
-    print(os.environ['github.event.comment.body'])
+    # print(os.environ['github.event.comment.body'])
 
     parser = ArgumentParser()
     parser.add_argument('-s', '--seed', type=int, default=None)
@@ -22,7 +23,7 @@ if __name__ == '__main__':
     if args.seed is not None:
         random.seed(args.seed)
 
-    if args.members is not None:
+    if args.members is None:
         members = [
            "김수영", "김원호", "김유리",
            "류나현", "신규용", "이다운",
@@ -34,13 +35,22 @@ if __name__ == '__main__':
 
     group_num = args.group_num
     team_size = math.ceil(len(members) / group_num)
+    #
+    #
+    # comment_body.write('|Team|' + '|'.join([' ' for i in range(team_size)]) + '|\n')
+    # comment_body.write('|' + '---|' * (team_size + 1) + '\n')
+    # for group_idx, group in enumerate(split_group(members, group_num)):
+    #     group = group + [' '] * (team_size - len(group))
+    #     group_str = '|'.join(group)
+    #     comment_body.write(f'|{group_idx}|{group_str}|\n')
+    #
+    # comment_body.close()
 
-    comment_body = open('comment-body.md', 'w')
-    comment_body.write('|Team|' + '|'.join([' ' for i in range(team_size)]) + '|\n')
-    comment_body.write('|' + '---|' * (team_size + 1) + '\n')
+    df = pd.DataFrame(columns=[' '] * team_size)
     for group_idx, group in enumerate(split_group(members, group_num)):
         group = group + [' '] * (team_size - len(group))
-        group_str = '|'.join(group)
-        comment_body.write(f'|{group_idx}|{group_str}|\n')
+        df.loc[len(df)] = group
+    df.index.name = 'Team'
 
-    comment_body.close()
+    comment_body = open('comment-body.md', 'w')
+    print(df.to_markdown(comment_body, tablefmt='github'))
