@@ -1,9 +1,8 @@
 name: Team Generator
 
 on:
-  push:
-    issue_comment:
-      types: [ created ]
+  issue_comment:
+    types: [ created ]
 
 jobs:
   comment:
