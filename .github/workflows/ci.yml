@@ -23,4 +23,6 @@ jobs:
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
+          comment-id: ${{ github.event.comment.id }}
           body: ${{ env.MESSAGE }}
+        reactions: '+1'
