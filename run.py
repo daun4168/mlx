@@ -6,19 +6,20 @@ from typing import List
 
 import pandas as pd
 
+
 def split_group(samples: List, size: int) -> List[List]:
     random.shuffle(samples)
     return [samples[i::size] for i in range(size)]
 
 
 if __name__ == '__main__':
-    print(os.environ)
-
     parser = ArgumentParser()
     parser.add_argument('-s', '--seed', type=int, default=None)
     parser.add_argument('-m', '--members', nargs='*')
     parser.add_argument('-n', '--group_num', type=int, default=3)
-    args = parser.parse_args()
+    print(os.environ['Comment'])
+    inputs = os.environ['Comment'].replace('team generator', '').split()
+    args = parser.parse_args(inputs)
 
     if args.seed is not None:
         random.seed(args.seed)
@@ -35,16 +36,6 @@ if __name__ == '__main__':
 
     group_num = args.group_num
     team_size = math.ceil(len(members) / group_num)
-    #
-    #
-    # comment_body.write('|Team|' + '|'.join([' ' for i in range(team_size)]) + '|\n')
-    # comment_body.write('|' + '---|' * (team_size + 1) + '\n')
-    # for group_idx, group in enumerate(split_group(members, group_num)):
-    #     group = group + [' '] * (team_size - len(group))
-    #     group_str = '|'.join(group)
-    #     comment_body.write(f'|{group_idx}|{group_str}|\n')
-    #
-    # comment_body.close()
 
     df = pd.DataFrame(columns=[' '] * team_size)
     for group_idx, group in enumerate(split_group(members, group_num)):
