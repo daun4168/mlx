@@ -24,6 +24,6 @@ jobs:
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: $MESSAGE
-#          body: ${{ env.MESSAGE }}
+          body: ${{ env.MESSAGE }} A
+#          body:
           reactions: 'heart'
