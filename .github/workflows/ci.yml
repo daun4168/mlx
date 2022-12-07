@@ -25,4 +25,4 @@ jobs:
         with:
           comment-id: ${{ github.event.comment.id }}
           body: ${{ env.MESSAGE }}
-        reactions: '+1'
+          reactions: 'heart'
