@@ -1,0 +1,23 @@
+name: Team Generator
+
+on:
+  push:
+    issue_comment:
+      types: [ created ]
+
+jobs:
+  comment:
+    if: contains(github.event.comment.body, 'team generator')
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Test
+        run: |
+          python3 run.py
