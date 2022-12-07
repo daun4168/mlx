@@ -7,9 +7,9 @@ on:
 jobs:
   comment:
     if: contains(github.event.comment.body, 'team generator')
-
     runs-on: ubuntu-latest
-
+    env:
+      Comment: ${{ github.event.comment.body }}
     steps:
       - uses: actions/checkout@v2
         with:

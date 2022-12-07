@@ -3,7 +3,7 @@ import random
 import math
 from argparse import ArgumentParser
 from typing import List
-import sys
+
 import pandas as pd
 
 def split_group(samples: List, size: int) -> List[List]:
