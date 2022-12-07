@@ -12,7 +12,7 @@ def split_group(samples: List, size: int) -> List[List]:
 
 
 if __name__ == '__main__':
-    # print(os.environ['github.event.comment.body'])
+    print(os.environ)
 
     parser = ArgumentParser()
     parser.add_argument('-s', '--seed', type=int, default=None)
