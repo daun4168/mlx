@@ -32,4 +32,4 @@ if __name__ == '__main__':
     for group_idx, group in enumerate(split_group(members, team_size)):
         print(group_idx, ':', group)
 
-    os.environ['MESSAGE'] = 'The First Message \n and next message'
+    os.environ['MESSAGE'] = 'The First Message'
