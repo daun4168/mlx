@@ -1,6 +1,7 @@
 import random
 from typing import List
 from argparse import ArgumentParser
+import os
 
 
 def split_group(samples: List, size: int):
@@ -30,3 +31,5 @@ if __name__ == '__main__':
     team_size = 4
     for group_idx, group in enumerate(split_group(members, team_size)):
         print(group_idx, ':', group)
+
+    os.environ['MESSAGE'] = 'The First Message \n and next message'
